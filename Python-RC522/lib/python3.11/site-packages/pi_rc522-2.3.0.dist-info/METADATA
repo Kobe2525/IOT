@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: pi-rc522
+Version: 2.3.0
+Summary: Raspberry Pi Python library for SPI RFID RC522 module.
+Home-page: https://github.com/kevinvalk/pi-rc522
+Author: ondryaso
+Author-email: ondryaso@ondryaso.eu
+License: MIT
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+License-File: LICENSE.md
+Requires-Dist: spidev
+Requires-Dist: RPi.GPIO
+
+Raspberry Pi Python library for SPI RFID RC522 module.
