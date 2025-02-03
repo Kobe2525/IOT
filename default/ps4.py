@@ -1,142 +1,191 @@
 from pyPS4Controller.controller import Controller
+import os
+import _thread
+import time
 
 class MyController(Controller):
     def __init__(self, **kwargs):
         Controller.__init__(self, **kwargs)
         print("Controller initialized.")
+        
+        self.XButton = 0
+        self.TButton = 0
+        self.CButton = 0
+        self.SButton = 0
+        self.L1Button = 0
+        self.L2Button = 0
+        self.R1Button = 0
+        self.R2Button = 0
+        self.UpArrow = 0
+        self.DownArrow = 0
+        self.LeftArrow = 0
+        self.RightArrow = 0
+        self.L3X = 0
+        self.L3Y = 0
+        self.R3X = 0
+        self.R3Y = 0
+        self.L3Button = 0
+        self.R3Button = 0
+        self.OptionsButton = 0
+        self.ShareButton = 0
+        self.PSButton = 0
 
     def on_x_press(self):
-        print("X button pressed.")
-
+        self.XButton = 1
+    
     def on_x_release(self):
-        print("X button released.")
-
+        self.XButton = 0
+    
     def on_triangle_press(self):
-        print("Triangle button pressed.")
-
+        self.TButton = 1
+    
     def on_triangle_release(self):
-        print("Triangle button released.")
-
+        self.TButton = 0
+    
     def on_circle_press(self):
-        print("Circle button pressed.")
-
+        self.CButton = 1
+    
     def on_circle_release(self):
-        print("Circle button released.")
-
+        self.CButton = 0
+    
     def on_square_press(self):
-        print("Square button pressed.")
-
+        self.SButton = 1
+    
     def on_square_release(self):
-        print("Square button released.")
-
+        self.SButton = 0
+    
     def on_L1_press(self):
-        print("L1 button pressed.")
-
+        self.L1Button = 1
+    
     def on_L1_release(self):
-        print("L1 button released.")
-
+        self.L1Button = 0
+    
     def on_L2_press(self, value):
-        print(f"L2 button pressed with value {value}.")
-
+        self.L2Button = value
+    
     def on_L2_release(self):
-        print("L2 button released.")
-
+        self.L2Button = 0
+    
     def on_R1_press(self):
-        print("R1 button pressed.")
-
+        self.R1Button = 1
+    
     def on_R1_release(self):
-        print("R1 button released.")
-
+        self.R1Button = 0
+    
     def on_R2_press(self, value):
-        print(f"R2 button pressed with value {value}.")
-
+        self.R2Button = value
+    
     def on_R2_release(self):
-        print("R2 button released.")
-
+        self.R2Button = 0
+    
     def on_up_arrow_press(self):
-        print("Up arrow pressed.")
-
+        self.UpArrow = 1
+    
     def on_up_down_arrow_release(self):
-        print("Up/Down arrow released.")
-
+        self.UpArrow = 0
+        self.DownArrow = 0
+    
     def on_down_arrow_press(self):
-        print("Down arrow pressed.")
-
+        self.DownArrow = 1
+    
     def on_left_arrow_press(self):
-        print("Left arrow pressed.")
-
+        self.LeftArrow = 1
+    
     def on_left_right_arrow_release(self):
-        print("Left/Right arrow released.")
-
+        self.LeftArrow = 0
+        self.RightArrow = 0
+    
     def on_right_arrow_press(self):
-        print("Right arrow pressed.")
-
-    def on_L3_up(self, value):
-        pass
-
-    def on_L3_down(self, value):
-        pass
-
-    def on_L3_left(self, value):
-        pass
-
-    def on_L3_right(self, value):
-        pass
-
-    def on_L3_y_at_rest(self):
-        print("L3 Y axis is at rest.")
-
-    def on_L3_x_at_rest(self):
-        print("L3 X axis is at rest.")
-
+        self.RightArrow = 1
+    
     def on_L3_press(self):
-        print("L3 button pressed.")
-
+        self.L3Button = 1
+    
     def on_L3_release(self):
-        print("L3 button released.")
-
-    def on_R3_up(self, value):
-        pass
-
-    def on_R3_down(self, value):
-        pass
-
-    def on_R3_left(self, value):
-        pass
-
-    def on_R3_right(self, value):
-        pass
-
-    def on_R3_y_at_rest(self):
-        print("R3 Y axis is at rest.")
-
-    def on_R3_x_at_rest(self):
-        print("R3 X axis is at rest.")
-
+        self.L3Button = 0
+    
     def on_R3_press(self):
-        print("R3 button pressed.")
-
+        self.R3Button = 1
+    
     def on_R3_release(self):
-        print("R3 button released.")
-
+        self.R3Button = 0
+    
     def on_options_press(self):
-        print("Options button pressed.")
-
+        self.OptionsButton = 1
+    
     def on_options_release(self):
-        print("Options button released.")
-
+        self.OptionsButton = 0
+    
     def on_share_press(self):
-        print("Share button pressed.")
-
+        self.ShareButton = 1
+    
     def on_share_release(self):
-        print("Share button released.")
-
+        self.ShareButton = 0
+    
     def on_playstation_button_press(self):
-        print("PlayStation button pressed.")
-
+        self.PSButton = 1
+    
     def on_playstation_button_release(self):
-        print("PlayStation button released.")
+        self.PSButton = 0
+    
+    def on_L3_up(self, value):
+        ValueB = 100/32767*value
+        self.L3Y = -ValueB
+    
+    def on_L3_down(self, value):
+        ValueB = 100/32767*value
+        self.L3Y = -ValueB
+    
+    def on_L3_left(self, value):
+        ValueB = 100/32767*value
+        self.L3X = ValueB
+    
+    def on_L3_right(self, value):
+        ValueB = 100/32767*value
+        self.L3X = ValueB
+    
+    def on_L3_y_at_rest(self):
+        self.L3Y = 0
+    
+    def on_L3_x_at_rest(self):
+        self.L3X = 0
+    
+    def on_R3_up(self, value):
+        ValueB = 100/32767*value
+        self.R3Y = -ValueB
+    
+    def on_R3_down(self, value):
+        ValueB = 100/32767*value
+        self.R3Y = -ValueB
+    
+    def on_R3_left(self, value):
+        ValueB = 100/32767*value
+        self.R3X = ValueB
+    
+    def on_R3_right(self, value):
+        ValueB = 100/32767*value
+        self.R3X = ValueB
+    
+    def on_R3_y_at_rest(self):
+        self.R3Y = 0
+    
+    def on_R3_x_at_rest(self):
+        self.R3X = 0
+    
 
-# Create the controller instance and start listening
+def ControllerDef():
+    controller.listen(timeout=60)
+
 controller = MyController(interface="/dev/input/js0", connecting_using_ds4drv=False)
-controller.listen(timeout=60)
+_thread.start_new_thread(ControllerDef,())
+time.sleep(5)
+while True: 
+    os.system('clear')
+    print(f"XButton: {controller.XButton}, TButton: {controller.TButton}, CButton: {controller.CButton}, SButton: {controller.SButton}")
+    print(f"L1Button: {controller.L1Button}, L2Button: {controller.L2Button}, R1Button: {controller.R1Button}, R2Button: {controller.R2Button}")
+    print(f"UpArrow: {controller.UpArrow}, DownArrow: {controller.DownArrow}, LeftArrow: {controller.LeftArrow}, RightArrow: {controller.RightArrow}")
+    print(f"L3Button: {controller.L3Button}, R3Button: {controller.R3Button}, OptionsButton: {controller.OptionsButton}, ShareButton: {controller.ShareButton}, PSButton: {controller.PSButton}")
+    print(f"L3X: {round(controller.L3X,2)}, L3Y: {round(controller.L3Y,2)}")
+    print(f"R3X: {round(controller.R3X,2)}, R3Y: {round(controller.R3Y,2)}")
+    
+    time.sleep(0.2)
