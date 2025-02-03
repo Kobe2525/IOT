@@ -176,16 +176,18 @@ class MyController(Controller):
 def ControllerDef():
     controller.listen(timeout=60)
 
+def Return():
+    values=[controller.XButton , controller.TButton , controller.CButton , controller.SButton , 
+    controller.L1Button , controller.L2Button , controller.R1Button , controller.R2Button , 
+    controller.UpArrow ,controller.DownArrow , controller.LeftArrow , controller.RightArrow , 
+    controller.L3Button , controller.R3Button , 
+    controller.OptionsButton , controller.ShareButton , controller.PSButton , 
+    controller.L3X , controller.L3Y , controller.R3X , controller.R3Y]
+    return values
+
 controller = MyController(interface="/dev/input/js0", connecting_using_ds4drv=False)
 _thread.start_new_thread(ControllerDef,())
-time.sleep(5)
 while True: 
-    os.system('clear')
-    print(f"XButton: {controller.XButton}, TButton: {controller.TButton}, CButton: {controller.CButton}, SButton: {controller.SButton}")
-    print(f"L1Button: {controller.L1Button}, L2Button: {controller.L2Button}, R1Button: {controller.R1Button}, R2Button: {controller.R2Button}")
-    print(f"UpArrow: {controller.UpArrow}, DownArrow: {controller.DownArrow}, LeftArrow: {controller.LeftArrow}, RightArrow: {controller.RightArrow}")
-    print(f"L3Button: {controller.L3Button}, R3Button: {controller.R3Button}, OptionsButton: {controller.OptionsButton}, ShareButton: {controller.ShareButton}, PSButton: {controller.PSButton}")
-    print(f"L3X: {round(controller.L3X,2)}, L3Y: {round(controller.L3Y,2)}")
-    print(f"R3X: {round(controller.R3X,2)}, R3Y: {round(controller.R3Y,2)}")
-    
+    print(Return())
+
     time.sleep(0.2)
