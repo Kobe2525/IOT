@@ -1,6 +1,8 @@
 from ps4 import *
+print("Helllldlsfjlmf")
 while True:
     print("Hello")
+
     PS4State = Return()
     os.system('clear')
     print(f"XButton: {PS4State[0]}, TButton: {PS4State[1]}, CButton: {PS4State[2]}, SButton: {PS4State[3]}")
@@ -10,4 +12,4 @@ while True:
     print(f"L3X: {round(PS4State[17],2)}, L3Y: {round(PS4State[18],2)}")
     print(f"R3X: {round(PS4State[19],2)}, R3Y: {round(PS4State[20],2)}")
     
-    time.sleep(0.2)
+    time.sleep(0.02)

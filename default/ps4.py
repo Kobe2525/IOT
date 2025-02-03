@@ -176,6 +176,8 @@ class MyController(Controller):
 def ControllerDef():
     controller.listen(timeout=60)
 
+
+
 def Return():
     values=[controller.XButton , controller.TButton , controller.CButton , controller.SButton , 
     controller.L1Button , controller.L2Button , controller.R1Button , controller.R2Button , 
@@ -187,7 +189,4 @@ def Return():
 
 controller = MyController(interface="/dev/input/js0", connecting_using_ds4drv=False)
 _thread.start_new_thread(ControllerDef,())
-while True: 
-    print(Return())
 
-    time.sleep(0.2)
