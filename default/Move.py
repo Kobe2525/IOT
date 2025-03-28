@@ -16,6 +16,13 @@ def interruptStartpositie():
 def Kalibratie():
     global Startpositie
 
+    DIR.value = 1
+    for i in range(1000):
+        PUL.on()
+        sleep(0.0004)
+        PUL.off()
+        sleep(0.0004)
+
     PUL.off()  # Stuur LAAG naar PUL
     Startpositie = False
     direction = 0  # 0 betekent de motor draait naar links (naar de schakelaar toe)
@@ -42,7 +49,12 @@ def stappenmotor(richting, stappen):
         sleep(0.0004)
 
 try:
-    sleep(1)
+    print("dir")
+    DIR.value = 0
+    sleep(5)
+    print("dir1")
+    DIR.value = 1
+    sleep(1000)
     # Stel de interrupt in voor de kalibratieknop
     KALIBR.when_pressed = interruptStartpositie
 
@@ -53,7 +65,9 @@ try:
     # Hier kun je verder gaan met de volgende logica na kalibratie
     # Bijvoorbeeld:
     print("Start stappenmotor in de andere richting")
-    stappenmotor(1, 32000)  # Voorbeeld: draai 800 stappen naar rechts
+    while True:
+        stappenmotor(1, 1000)  # Voorbeeld: draai 800 stappen naar rechts
+        sleep(0.04)
 
 except KeyboardInterrupt:
     print("\n'ctrl + C' except: main\n")
